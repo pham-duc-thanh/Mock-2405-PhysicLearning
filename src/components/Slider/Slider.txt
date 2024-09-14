@@ -1,0 +1,52 @@
+import React, { useEffect, useState } from 'react'
+import './Slider.css'
+import images1 from '../../assets/slider_images/slider1.png';
+import images2 from '../../assets/slider_images/slider2.png';
+import images3 from '../../assets/slider_images/slider4.png';
+
+const Slider = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = [images1, images2, images3];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage === images.length - 1 ? 0 : prevImage + 1));
+    }, 3000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <div className="slider-background">
+      <div className="slider">
+
+        {/* <div className='banner-left'>
+
+</div> */}
+
+        <div className='slider-between'>
+          <img src={images[currentImage]} alt="Slider" className="slider-image" />
+          <div className="slider-content">
+            <h1>Physic learning</h1>
+            <p>
+              Physic learning là trang web học Vật lý từ lớp 6 đến lớp 12, chương trình gồm Cơ Bản và Nâng Cao. Kiến thức được xây dựng bởi các thầy (cô) giáo có kinh nghiệm chuyên dậy về Vật Lý lâu năm.
+            </p>
+
+            <button>TƯ VẤN MIỄN PHÍ</button>
+
+          </div>
+
+          <div className='banner-right'>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  )
+}
+
+export default Slider
